@@ -1,0 +1,194 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+
+body {
+    background: radial-gradient(circle at top, #111 0%, #000 70%);
+    color: #fff;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+.landing-body { overflow: hidden; }
+.scroll-body { overflow-y: auto; }
+
+/* DEKORASI */
+.stars span {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: #fff;
+    opacity: 0.8;
+    animation: twinkle 3s infinite alternate;
+}
+
+.mountain {
+    position: fixed;
+    bottom: 0; width: 100%; height: 35vh;
+    background: #000;
+    clip-path: polygon(0% 100%, 10% 65%, 22% 78%, 35% 40%, 50% 60%, 65% 35%, 78% 70%, 90% 55%, 100% 100%);
+    z-index: 1;
+}
+
+/* KARTU DEPAN */
+#page1 { height: 100vh; display: flex; align-items: center; justify-content: center; z-index: 10; position: relative; }
+.card {
+    background: rgba(255, 255, 255, 0.08);
+    padding: 35px; width: 90%; max-width: 400px;
+    border-radius: 25px; backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    text-align: center;
+}
+
+/* CONTENT SCROLL */
+#page2 { padding: 60px 20px; max-width: 600px; margin: 0 auto; position: relative; z-index: 10; }
+.moment-container { margin-top: 40px; display: flex; flex-direction: column; gap: 50px; }
+.moment-card { background: rgba(255, 255, 255, 0.05); border-radius: 20px; padding: 20px; text-align: center; }
+.moment-card img { width: 52%; border-radius: 20px; margin-bottom: 20px; }
+
+/* TOMBOL */
+.btn {
+    background: #fff; color: #000; border: none;
+    padding: 14px 28px; border-radius: 40px;
+    cursor: pointer; font-weight: 600; margin-top: 20px;
+}
+
+/* BINTANG JATUH */
+.falling-star {
+    position: fixed; top: -10px; z-index: 5;
+    background: linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,1));
+    height: 2px; width: 100px; animation: starFall linear forwards;
+}
+
+@keyframes starFall {
+    0% { transform: translateX(0) translateY(0) rotate(25deg) scale(0); opacity: 1; }
+    100% { transform: translateX(-110vw) translateY(110vh) rotate(25deg) scale(1); opacity: 0; }
+}
+@keyframes twinkle { from { opacity: 0.2; } to { opacity: 1; } }
+
+/* --- ANIMASI TRANSISI PAGE 3 --- */
+.implode {
+    animation: implode 1.2s forwards ease-in-out;
+}
+
+@keyframes implode {
+    0% { transform: scale(1); opacity: 1; filter: blur(0); }
+    100% { transform: scale(0); opacity: 0; filter: blur(10px); }
+}
+
+/* --- STYLE PAGE 3 (ALBUM NAVY) --- */
+.navy-bg {
+    background: #001f3f !important; /* Warna Navy */
+}
+
+.album-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    z-index: 10;
+}
+
+.photo-frame {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    border-radius: 15px;
+    border: 1px dashed #fff;
+    transform: rotate(calc(var(--r, 0) * 1deg));
+    transition: 0.3s;
+}
+
+.photo-frame:hover {
+    transform: rotate(0deg) scale(1.05);
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.photo-frame img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+/* --- TEMA NAVY & ALBUM --- */
+.navy-theme { background: radial-gradient(circle at top, #001f3f 0%, #000 80%) !important; }
+
+.ice-cream-title { color: #f4978e; text-shadow: 2px 2px #5a3e3b; }
+
+#page3 { padding: 50px 20px; text-align: center; position: relative; z-index: 10; }
+
+.album-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    margin-top: 40px;
+}
+
+.photo-frame {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 15px;
+    border-radius: 15px;
+    border: 1px dashed rgba(255, 255, 255, 0.3);
+    transform: rotate(var(--r));
+    transition: 0.3s ease;
+}
+
+.photo-frame:hover { transform: rotate(0deg) scale(1.05); background: rgba(255, 255, 255, 0.1); }
+
+.photo-frame img { width: 100%; height: 200px; object-fit: cover; border-radius: 10px; }
+
+/* --- ANIMASI TRANSISI "MENGUMPUL" --- */
+.implode {
+    animation: implodeAnim 1s forwards ease-in-out;
+}
+
+@keyframes implodeAnim {
+    0% { transform: scale(1); opacity: 1; filter: blur(0); }
+    100% { transform: scale(0); opacity: 0; filter: blur(10px); }
+}
+
+/* Partikel Bintang Pecah */
+.particle {
+    position: fixed; pointer-events: none; z-index: 999;
+    background: #fff; border-radius: 50%;
+}
+
+/* --- EFEK AURORA --- */
+.aurora-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 40vh; /* Tinggi aurora, bisa diatur */
+    z-index: 0; /* Di belakang bintang dan konten */
+    background: 
+        radial-gradient(ellipse at 20% 0%, rgba(0, 255, 200, 0.3) 0%, transparent 50%), /* Hijau muda */
+        radial-gradient(ellipse at 80% 10%, rgba(100, 0, 255, 0.25) 0%, transparent 50%), /* Ungu */
+        radial-gradient(ellipse at 40% 5%, rgba(0, 150, 255, 0.3) 0%, transparent 50%); /* Biru */
+    background-size: 150% 200%; /* Ukuran gradien untuk animasi */
+    animation: auroraMove 20s infinite alternate ease-in-out;
+    filter: blur(50px); /* Efek kabur khas aurora */
+    opacity: 0.6; /* Transparansi aurora */
+}
+
+@keyframes auroraMove {
+    0% { background-position: 0% 0%; }
+    25% { background-position: 50% 20%; }
+    50% { background-position: 100% 0%; }
+    75% { background-position: 50% -20%; }
+    100% { background-position: 0% 0%; }
+}
+
+/* Pastikan bintang ada di depan aurora */
+.stars { z-index: 1; } 
+.mountain { z-index: 2; }
+.card, #page1, #page2, #page3 { z-index: 10; } /* Konten utama paling depan */
+
+/* Sesuaikan background utama body agar warna aurora tidak tabrakan */
+body {
+    background: radial-gradient(circle at top, #050A30 0%, #000 70%); /* Darker base for aurora */
+    /* ... sisa properti body kamu ... */
+}
+
+/* Sesuaikan juga navy-theme agar cocok */
+.navy-theme {
+    background: radial-gradient(circle at top, #00122e 0%, #000 80%) !important;
+}
